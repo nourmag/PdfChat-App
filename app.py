@@ -14,7 +14,7 @@ from langchain.callbacks import get_openai_callback
 os.environ['OPENAI_API_KEY'] = ''
 
 with st.sidebar:
-    st.title('🤗💬 LLM Chat App')
+    st.title('Pdf-Chat App')
     st.markdown('''
     ## About
     This app is an LLM-powered chatbot built using:
@@ -24,7 +24,7 @@ with st.sidebar:
  
     ''')
     add_vertical_space(5)
-    st.write('Made with ❤️ by [Monu Kumar] ')
+    st.write('Made by Nour Maged & Naira Mohammed ')
 
     def main():
         st.header("Chat with PDF 💬")
