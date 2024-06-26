@@ -1,0 +1,10 @@
+git init
+git add .
+git commit -m 'first commit'
+git remote remove origin
+git remote origin main https://github.com/nourmag/PDF-Chat-App.git
+git remote add origin https://github.com/nourmag/PDF-Chat-App.git
+git push -u origin main
+
+#git config --global user.email 'nourmag@yahoo.com'
+#git config --global user.name 'nourmag'
