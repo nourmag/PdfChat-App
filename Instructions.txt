@@ -1,0 +1,22 @@
+//Git Commands
+
+git init
+git add .
+git commit -m 'first commit'
+git config --global user.email ''
+git config --global user.name ''
+git remote remove origin
+git remote add origin https://github.com/nourmag/PdfChat-App.git
+git remote origin main https://github.com/nourmag/PdfChat-App.git
+git push -u origin main
+
+
+//Set the virtual environment on Terminal:
+
+Install the venv:                                                               python -m venv venv
+First set the execution policy:                                                 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+Then generate the venv:                                                         venv\Scripts\activate
+VIP.. Install SWIG and add to environment variables path (System variables) --> https://sourceforge.net/projects/swig/
+VIP.. Download faiss-cpu wheels then install it on device          -->          https://pypi.org/project/faiss-cpu/
+Install the requirements:                                                       pip install -r requirements.txt
+Run the app to display the streamlit front-end:                                 streamlit run app.py
