@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=D:\Programming Projects\Python projects\PDF-Chat-App\venv
+set VIRTUAL_ENV=G:\Asia University intern\A PDF CHAT APP\chat app\PdfChat-App\venv
 
 if not defined PROMPT set PROMPT=$P$G
 
