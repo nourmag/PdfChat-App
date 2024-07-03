@@ -1,34 +1,33 @@
+import unittest
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
 import chromadb
 
-# Initialize the Chroma client
-client = chromadb.Client()
+class TestChromaDB(unittest.TestCase):
+    def setUp(self):
+        self.client = chromadb.Client()
+        self.embeddings = OpenAIEmbeddings()
+        self.texts = ["Hello world", "How are you?"]
 
-# Initialize OpenAI Embeddings
-embeddings = OpenAIEmbeddings()
+    def test_chroma_vector_store(self):
+        embedding_function = lambda texts: self.embeddings.embed_documents(texts)
+        vector_store = Chroma.from_texts(
+            texts=self.texts,
+            embedding_function=embedding_function,
+            client=self.client
+        )
+        self.assertIsNotNone(vector_store)
 
-# Example texts
-texts = ["Hello world", "How are you?"]
+    def test_similarity_search(self):
+        embedding_function = lambda texts: self.embeddings.embed_documents(texts)
+        vector_store = Chroma.from_texts(
+            texts=self.texts,
+            embedding_function=embedding_function,
+            client=self.client
+        )
+        query = "Hello"
+        docs = vector_store.similarity_search(query=query, k=1)
+        self.assertGreater(len(docs), 0)
 
-# Define the embedding function
-class OpenAIEmbeddingFunction:
-    def __init__(self, embeddings):
-        self.embeddings = embeddings
-
-    def __call__(self, input):
-        return self.embeddings.embed_documents(input)
-
-embedding_function = OpenAIEmbeddingFunction(embeddings)
-
-# Initialize the Chroma Vector Store
-vector_store = Chroma.from_texts(
-    texts=texts,
-    embedding_function=embedding_function,
-    client=client
-)
-
-# Perform a similarity search
-query = "Hello"
-docs = vector_store.similarity_search(query=query, k=1)
-print(docs)
+if __name__ == '__main__':
+    unittest.main()
