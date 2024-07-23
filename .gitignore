@@ -12,6 +12,3 @@ venv.bak/
 Instructions.txt
 
 # Ignore Docker files
-.dockerignore
-Dockerfile
-docker-compose.yml
