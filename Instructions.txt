@@ -1,0 +1,33 @@
+//Git Commands
+
+git init
+git add .
+git commit -m 'first commit'
+git config --global user.email ''
+git config --global user.name ''
+git remote remove origin
+git remote add origin https://github.com/nourmag/PdfChat-App.git
+git remote origin main https://github.com/nourmag/PdfChat-App.git
+git push -u origin main
+
+
+//Set the virtual environment on Terminal:
+
+Install the venv:                                                               python -m venv venv
+//To remove venv: rm -rf venv
+First set the execution policy:                                                 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+Then generate the venv:                                                         venv\Scripts\activate
+VIP.. Install SWIG and add to environment variables path (System variables) --> https://sourceforge.net/projects/swig/
+VIP.. Download faiss-cpu wheels then install it on device                   --> https://pypi.org/project/faiss-cpu/
+//Conda is an alternative (just in case) --> conda create -n pdf-chat-app python=3.10 - conda activate pdf-chat-app - conda install -c conda-forge faiss-cpu
+Install the requirements:                                                       pip install -r requirements.txt
+Run the app to display the streamlit front-end:                                 streamlit run app.py
+
+
+//Set Docker (langchain and ChromaDB images) environment:
+
+Check Docker Version (you may check the notifications if it): docker --version
+Pull images:                docker pull chromadb/chroma       docker pull langchain/langchain
+Check Docker compose Version:                                 docker-compose --version
+Build Docker image:                                           docker-compose build
+Run Application:                                              docker-compose up
