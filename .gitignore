@@ -1,7 +1,6 @@
 # Environments
 .env
-.venv
-venv
+
 env/
 venv/
 ENV/
@@ -12,3 +11,6 @@ venv.bak/
 Instructions.txt
 
 # Ignore Docker files
+.dockerignore
+Dockerfile
+docker-compose.yml
