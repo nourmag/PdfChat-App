@@ -1,0 +1,17 @@
+# Environments
+.env
+.venv
+venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Instructions file
+Instructions.txt
+
+# Ignore Docker files
+.dockerignore
+Dockerfile
+docker-compose.yml

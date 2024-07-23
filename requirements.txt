@@ -1,0 +1,10 @@
+openai==0.28
+langchain==0.0.154
+PyPDF2==3.0.1
+python-dotenv==1.0.0
+streamlit==1.18.1
+faiss-cpu==1.8.0
+streamlit-extras
+altair==4.2.0
+chromadb==0.5.3
+tiktoken
