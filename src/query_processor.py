@@ -1,13 +1,12 @@
-from langchain.llms import OpenAI
+from transformers import pipeline
 from langchain.chains.question_answering import load_qa_chain
-from langchain.callbacks import get_openai_callback
 import logging
 import streamlit as st
 
 class QueryProcessor:
     def __init__(self, vector_store):
         self.vector_store = vector_store
-        self.llm = OpenAI(model_name="gpt-3.5-turbo")
+        self.qa_pipeline = pipeline("question-answering", model="distilbert-base-cased-distilled-squad")
 
     def process_query(self, query):
         try:
@@ -19,12 +18,17 @@ class QueryProcessor:
                 st.error("No relevant documents found. Try rephrasing your query or uploading a different PDF.")
                 return "No relevant documents found."
 
-            chain = load_qa_chain(llm=self.llm, chain_type='stuff')
+            # Generate context from the retrieved documents
+            context = " ".join([doc["text"] for doc in docs])
 
-            with get_openai_callback() as cb:
-                response = chain.run(input_documents=docs, question=query)
-                logging.info(f"OpenAI callback: {cb}")
-            return response
+            # Create QA input
+            qa_input = {
+                "question": query,
+                "context": context
+            }
+
+            response = self.qa_pipeline(qa_input)
+            return response['answer']
         except Exception as e:
             logging.error(f"Error processing query: {e}")
             st.error(f"An error occurred while processing your query: {e}")
