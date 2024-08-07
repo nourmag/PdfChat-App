@@ -50,8 +50,6 @@ def main():
     pdf = st.file_uploader("Upload your PDF", type='pdf')
     if pdf is not None:
         pdf_handler = PDFHandler(pdf)
-        embedding_handler = EmbeddingHandler()
-        vector_store_handler = VectorStoreHandler()
 
         try:
             text = pdf_handler.extract_text()
@@ -63,21 +61,28 @@ def main():
             if not chunks:
                 st.error("Failed to split the text into chunks. Please check the content of the PDF.")
                 return
-
-            embeddings = embedding_handler.generate_embeddings(chunks)
-            if not embeddings:
-                st.error("Failed to generate embeddings. Please check the content of the PDF.")
-                return
-
-            vector_store = vector_store_handler.store_embeddings(chunks, embeddings)
-            st.write('Embeddings Computation Completed.')
-
+            
             # Accept user's questions/query
             query = st.text_input('Ask questions about your PDF:')
             if query:
+                embedding_handler = EmbeddingHandler()
+                vector_store_handler = VectorStoreHandler()
+
+                # Generate embeddings
+                embeddings = embedding_handler.generate_embeddings(chunks)
+                if not embeddings:
+                    st.error("Failed to generate embeddings. Please check the content of the PDF.")
+                    return
+
+                # Store embeddings
+                vector_store = vector_store_handler.store_embeddings(chunks, embeddings)
+                st.write('Embeddings Computation Completed.')
+
+                # Process the query
                 query_processor = QueryProcessor(vector_store)
                 response = query_processor.process_query(query)
                 st.write(response)
+
         except Exception as e:
             st.error(f"An error occurred: {e}")
 

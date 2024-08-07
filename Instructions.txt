@@ -31,3 +31,9 @@ Pull images:                docker pull chromadb/chroma       docker pull langch
 Check Docker compose Version:                                 docker-compose --version
 Build Docker image:                                           docker-compose build
 Run Application:                                              docker-compose up
+
+
+// Run pytest
+Run command: & "pathToYourProject/ProjectFolder/venv/Scripts/python.exe" -m pip install -U pytest
+OR 
+Activate Testing from the left sidebar
